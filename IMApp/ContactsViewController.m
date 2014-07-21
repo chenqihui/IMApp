@@ -8,7 +8,7 @@
 
 #import "ContactsViewController.h"
 
-@interface ContactsViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface ContactsViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate,UISearchDisplayDelegate>
 {
     UISegmentedControl *_selectTypeSegment;
     UITableView *_tableV;
@@ -17,6 +17,10 @@
     NSArray *_arKey;
     NSMutableDictionary *_dicData;
     NSMutableDictionary *_dicShowRow;
+    
+    UIView *_tableHeaderV;
+    UISearchBar *_searchB;
+    UISearchDisplayController *_searchDisplayC;
 }
 
 @end
@@ -46,11 +50,36 @@
     [_selectTypeSegment setSelectedSegmentIndex:0];
     [self.navView addSubview:_selectTypeSegment];
     
-    _tableV = [[UITableView alloc] initWithFrame:CGRectMake(0, self.navView.bottom, self.view.width, self.view.height - self.navView.bottom - self.tabBarController.tabBar.height) style:UITableViewStylePlain];
+    _searchB = [[UISearchBar alloc] initWithFrame:CGRectMake(0, self.navView.bottom, self.view.width, 44)];
+    [_searchB setPlaceholder:@"搜索"];
+    [_searchB setSearchBarStyle:UISearchBarStyleDefault];
+    
+    _searchDisplayC = [[UISearchDisplayController alloc] initWithSearchBar:_searchB contentsController:self];
+    _searchDisplayC.active = NO;
+    _searchDisplayC.delegate = self;
+    _searchDisplayC.searchResultsDataSource =self;
+    _searchDisplayC.searchResultsDelegate =self;
+    [self.view addSubview:_searchDisplayC.searchBar];
+    
+    _tableHeaderV = [[UIView alloc] initWithFrame:CGRectMake(0, _searchB.bottom, self.view.width, 106)];
+    [_tableHeaderV setBackgroundColor:[UIColor whiteColor]];
+
+    UIView *titleV = [[UIView alloc] initWithFrame:CGRectMake(0, _tableHeaderV.height - 25, self.view.width, 25)];
+    [titleV setBackgroundColor:RGBA(235, 235, 235, 1)];
+    UILabel *titleL = [[UILabel alloc] initWithFrame:titleV.bounds];
+    [titleL setBackgroundColor:[UIColor clearColor]];
+    [titleL setText:@"  好友分组"];
+    [titleL setFont:[UIFont systemFontOfSize:13]];
+    [titleV addSubview:titleL];
+    [_tableHeaderV addSubview:titleV];
+    
+    _tableV = [[UITableView alloc] initWithFrame:CGRectMake(0, _searchB.bottom, self.view.width, self.view.height - _searchB.bottom - self.tabBarController.tabBar.height) style:UITableViewStylePlain];
     _tableV.dataSource = self;
     _tableV.delegate = self;
     [_tableV setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:_tableV];
+    
+    _tableV.tableHeaderView = _tableHeaderV;
     
     [self initData];
 }
@@ -97,11 +126,19 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if (tableView == _searchDisplayC.searchResultsTableView)
+    {
+        return 0;
+    }
     return [_arKey count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (tableView == _searchDisplayC.searchResultsTableView)
+    {
+        return 0;
+    }
     NSString *key = [_arKey objectAtIndex:section];
     BOOL bShowRow = [[_dicShowRow objectForKey:key] boolValue];
     if (bShowRow)
@@ -122,12 +159,38 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (!cell)
     {
+        int w = tableView.width/6;
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+        
+        UIImage *i = [UIImage imageNamed:@"aio_face_manage_cover_default.png"];
+        UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(10, (50 - w + 15)/2, w - 15, w - 15)];
+        iv.layer.masksToBounds = YES;
+        iv.layer.cornerRadius = 6.0;
+        iv.layer.borderWidth = 1.0;
+        iv.layer.borderColor = [[UIColor whiteColor] CGColor];
+        [iv setImage:i];
+        iv.tag = 1;
+        [cell.contentView addSubview:iv];
+        
+        UILabel *nameL = [[UILabel alloc] initWithFrame:CGRectMake(w + 5, 0, w*4 - 5, 30)];
+        [nameL setBackgroundColor:[UIColor clearColor]];
+        [nameL setTextAlignment:NSTextAlignmentNatural];
+        [nameL setFont:[UIFont systemFontOfSize:18]];
+        nameL.tag = 2;
+        [cell.contentView addSubview:nameL];
+        
+        UILabel *stateL = [[UILabel alloc] initWithFrame:CGRectMake(w + 5, 25, w*4 - 5, 20)];
+        [stateL setBackgroundColor:[UIColor clearColor]];
+        [stateL setFont:[UIFont systemFontOfSize:12]];
+        [stateL setTextColor:[UIColor grayColor]];
+        stateL.tag = 3;
+        [stateL setText:@"[离线]这家伙很吊，什么也没有留下"];
+        [cell.contentView addSubview:stateL];
     }
     NSString *key = [_arKey objectAtIndex:[indexPath section]];
     BOOL bShowRow = [[_dicShowRow objectForKey:key] boolValue];
     if (bShowRow)
-        cell.textLabel.text = [[_dicData objectForKey:key] objectAtIndex:indexPath.row];
+        ((UILabel *)[cell.contentView viewWithTag:2]).text = [[_dicData objectForKey:key] objectAtIndex:indexPath.row];
     
     return cell;
 }
@@ -150,6 +213,16 @@
     UIView *headV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.width, 44)];
     [headV setBackgroundColor:[UIColor whiteColor]];
     
+    NSString *key = [_arKey objectAtIndex:section];
+    BOOL bShowRow = [[_dicShowRow objectForKey:key] boolValue];
+    
+    UIImage *i = [UIImage imageNamed:@"buddy_header_arrow.png"];
+    UIImageView *arrowIV = [[UIImageView alloc] initWithFrame:CGRectMake((w - i.size.width)/2, (44 - i.size.height)/2, i.size.width, i.size.height)];
+    [arrowIV setImage:i];
+    [headV addSubview:arrowIV];
+    if (bShowRow)
+        arrowIV.transform = CGAffineTransformMakeRotation(M_PI_2);
+    
     UILabel *titleL = [[UILabel alloc] initWithFrame:CGRectMake(w, 2, w * 4, 40)];
     [titleL setText:[_arKey objectAtIndex:section]];
     [titleL setFont:[UIFont systemFontOfSize:16]];
@@ -160,8 +233,6 @@
     [lineHV setBackgroundColor:[UIColor grayColor]];
     [headV addSubview:lineHV];
     
-    NSString *key = [_arKey objectAtIndex:section];
-    BOOL bShowRow = [[_dicShowRow objectForKey:key] boolValue];
     if (bShowRow)
     {
         UIView *lineBV = [[UIView alloc] initWithFrame:CGRectMake(0, 44 - 0.5, tableView.width, 0.5)];
@@ -189,6 +260,45 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - UISearchDisplayDelegate
+
+- (void) searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
+{
+    [UIView animateWithDuration:0.2 animations:^
+     {
+         self.navView.top -= 64;
+         _searchB.top -= 44;
+         _tableV.top -= 44;
+     }completion:^(BOOL finished)
+     {
+         [self.navView setHidden:YES];
+         _tableV.height += 44;
+     }];
+    
+    controller.searchBar.showsCancelButton = YES;
+    for(UIView *subView in [[controller.searchBar.subviews objectAtIndex:0] subviews])
+    {
+        if([subView isKindOfClass:UIButton.class])
+        {
+            [(UIButton*)subView setTitle:@"取消" forState:UIControlStateNormal];
+        }
+    }
+}
+
+- (void) searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
+{
+    [self.navView setHidden:NO];
+    [UIView animateWithDuration:0.2 animations:^
+     {
+         self.navView.top += 64;
+         _searchB.top += 44;
+         _tableV.top += 44;
+     }completion:^(BOOL finished)
+     {
+         _tableV.height -= 44;
+     }];
 }
 
 @end

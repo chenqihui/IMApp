@@ -68,6 +68,7 @@
     UIView *item2 = menuItem(1);
     if (item2 != nil)
     {
+        _rightV = item2;
         [_navView addSubview:item2];
     }
 }

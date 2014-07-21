@@ -15,11 +15,28 @@
     NSMutableArray *_arData;
     UISegmentedControl *_selectTypeSegment;
     UISearchDisplayController *_searchDisplayC;
+    
+    UIView *_maskV;
+    UIView *_menuV;
 }
 
 @end
 
 @implementation MessagesViewController
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    UIButton *btn = (UIButton *)self.rightV;
+    if (btn.selected)
+    {
+        [btn setUserInteractionEnabled:NO];
+        [btn setSelected:!btn.selected];
+        [self showMenuWithBool:btn.selected complete:^()
+         {
+             [btn setUserInteractionEnabled:YES];
+         }];
+    }
+}
 
 - (void)viewDidLoad
 {
@@ -32,6 +49,8 @@
              UIImage *i = [UIImage imageNamed:@"menu_icon_bulb.png"];
              [btn setImage:i forState:UIControlStateNormal];
              [btn setFrame:CGRectMake(self.navView.width - i.size.width - 10, (self.navView.height - i.size.height)/2, i.size.width, i.size.height)];
+             [btn setImage:[UIImage imageNamed:@"menu_icon_bulb_pressed.png"] forState:UIControlStateSelected];
+             [btn addTarget:self action:@selector(showMenu:) forControlEvents:UIControlEventTouchUpInside];
              
              return btn;
          }
@@ -61,6 +80,23 @@
     _searchDisplayC.searchResultsDelegate =self;
     [self.view addSubview:_searchDisplayC.searchBar];
     
+    _maskV = [[UIView alloc] initWithFrame:CGRectMake(0, self.navView.bottom, self.view.width, self.view.height - self.navView.bottom - self.tabBarController.tabBar.height)];
+    [_maskV setClipsToBounds:YES];
+    [self.view addSubview:_maskV];
+    [_maskV setHidden:YES];
+    
+    UIView *bg = [[UIView alloc] initWithFrame:_maskV.bounds];
+    [bg setBackgroundColor:[UIColor blackColor]];
+    [bg setAlpha:0.5];
+    [_maskV addSubview:bg];
+    
+    UITapGestureRecognizer *tSM = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showMenuByTap:)];
+    [bg addGestureRecognizer:tSM];
+    
+    _menuV = [[UIView alloc] initWithFrame:CGRectMake(0, -80, self.view.width, 80)];
+    [_menuV setBackgroundColor:RGBA(214, 212, 212, 1)];
+    [_maskV addSubview:_menuV];
+    
     [self initData];
 }
 
@@ -82,7 +118,53 @@
     });
 }
 
+- (void)showMenuWithBool:(BOOL)bShow complete:(void(^)())complete
+{
+    if (bShow)
+    {
+        [_maskV setHidden:NO];
+        [UIView animateWithDuration:0.3 animations:^
+         {
+             _menuV.top = 0;
+         } completion:^(BOOL finished)
+         {
+             complete();
+         }];
+    }else
+    {
+        [UIView animateWithDuration:0.3 animations:^
+         {
+             _menuV.top = -_menuV.height;
+         } completion:^(BOOL finished)
+         {
+             [_maskV setHidden:YES];
+             complete();
+         }];
+    }
+}
+
 #pragma mark - action
+
+- (void)showMenu:(UIButton *)btn
+{
+    [btn setUserInteractionEnabled:NO];
+    [btn setSelected:!btn.selected];
+    [self showMenuWithBool:btn.selected complete:^()
+    {
+        [btn setUserInteractionEnabled:YES];
+    }];
+}
+
+- (void)showMenuByTap:(UITapGestureRecognizer *)tap
+{
+    UIButton *btn = (UIButton *)self.rightV;
+    [btn setUserInteractionEnabled:NO];
+    [btn setSelected:!btn.selected];
+    [self showMenuWithBool:btn.selected complete:^()
+     {
+         [btn setUserInteractionEnabled:YES];
+     }];
+}
 
 #pragma mark - UITableViewDataSource
 
@@ -135,9 +217,8 @@
         _tableV.height += 44;
      }];
     
-    //不成功
-    UISearchBar *searchBar = self.searchDisplayController.searchBar;
-    for(UIView *subView in ((UIView *)[searchBar.subviews objectAtIndex:0]).subviews)
+    controller.searchBar.showsCancelButton = YES;
+    for(UIView *subView in [[controller.searchBar.subviews objectAtIndex:0] subviews])
     {
         if([subView isKindOfClass:UIButton.class])
         {

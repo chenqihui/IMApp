@@ -14,6 +14,7 @@
 @property (nonatomic, strong) UIView *navView;
 @property (nonatomic, assign, readonly) int nMutiple;
 @property (nonatomic, strong) NSArray *arParams;
+@property (nonatomic, strong) UIView *rightV;
 
 - (id)initWithFrame:(CGRect)frame param:(NSArray *)arParams;
 
