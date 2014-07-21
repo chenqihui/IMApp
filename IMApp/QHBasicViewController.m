@@ -30,13 +30,13 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = RGBA(236.f, 236.f, 236.f, 1);
-    UIView *statusBarView = [[UIImageView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320, 0.f)];
+    _statusBarView = [[UIImageView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320, 0.f)];
     if (isIos7 >= 7 && __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_6_1)
     {
-        statusBarView.frame = CGRectMake(statusBarView.frame.origin.x, statusBarView.frame.origin.y, statusBarView.frame.size.width, 20.f);
-        statusBarView.backgroundColor = [UIColor clearColor];
-        ((UIImageView *)statusBarView).backgroundColor = RGBA(247,247,247,1);
-        [self.view addSubview:statusBarView];
+        _statusBarView.frame = CGRectMake(_statusBarView.frame.origin.x, _statusBarView.frame.origin.y, _statusBarView.frame.size.width, 20.f);
+        _statusBarView.backgroundColor = [UIColor clearColor];
+        ((UIImageView *)_statusBarView).backgroundColor = RGBA(247,247,247,1);
+        [self.view addSubview:_statusBarView];
         //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     }
 }
@@ -54,7 +54,7 @@
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake((_navView.width - 200)/2, (_navView.height - 40)/2, 200, 40)];
         [titleLabel setText:szTitle];
         [titleLabel setTextAlignment:NSTextAlignmentCenter];
-        [titleLabel setTextColor:[UIColor whiteColor]];
+        [titleLabel setTextColor:[UIColor blackColor]];
         [titleLabel setFont:[UIFont boldSystemFontOfSize:18]];
         [titleLabel setBackgroundColor:[UIColor clearColor]];
         [_navView addSubview:titleLabel];

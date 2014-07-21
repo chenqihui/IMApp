@@ -10,6 +10,7 @@
 
 @interface QHBasicViewController : UIViewController
 
+@property (nonatomic, strong) UIImageView *statusBarView;
 @property (nonatomic, strong) UIView *navView;
 @property (nonatomic, assign, readonly) int nMutiple;
 @property (nonatomic, strong) NSArray *arParams;

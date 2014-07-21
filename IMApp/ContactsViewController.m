@@ -31,8 +31,10 @@
     {
         if (nIndex == 1)
         {
-            UIButton *btn = [UIButton buttonWithType:UIButtonTypeContactAdd];
-            [btn setFrame:CGRectMake(self.navView.width - 50, 2, 40, 40)];
+            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            UIImage *i = [UIImage imageNamed:@"group_right_btn.png"];
+            [btn setImage:i forState:UIControlStateNormal];
+            [btn setFrame:CGRectMake(self.navView.width - i.size.width - 10, (self.navView.height - i.size.height)/2, i.size.width, i.size.height)];
             
             return btn;
         }
@@ -40,11 +42,11 @@
     }];
     
     _selectTypeSegment = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"分组", @"全部", nil]];
-    [_selectTypeSegment setFrame:CGRectMake((self.view.frame.size.width - 120)/2, 8, 120, 28)];
+    [_selectTypeSegment setFrame:CGRectMake((CGRectGetWidth(self.view.frame) - 120)/2, 8, 120, 28)];
     [_selectTypeSegment setSelectedSegmentIndex:0];
     [self.navView addSubview:_selectTypeSegment];
     
-    _tableV = [[UITableView alloc] initWithFrame:CGRectMake(0, self.navView.bottom, self.view.width, self.view.height) style:UITableViewStylePlain];
+    _tableV = [[UITableView alloc] initWithFrame:CGRectMake(0, self.navView.bottom, self.view.width, self.view.height - self.navView.bottom - self.tabBarController.tabBar.height) style:UITableViewStylePlain];
     _tableV.dataSource = self;
     _tableV.delegate = self;
     [_tableV setBackgroundColor:[UIColor clearColor]];
@@ -81,6 +83,16 @@
     });
 }
 
+#pragma mark - action
+
+- (void)showRow:(UIButton *)btn
+{
+    NSString *key = [_arKey objectAtIndex:(btn.tag - 1)];
+    BOOL b = [[_dicShowRow objectForKey:key] boolValue];
+    [_dicShowRow setObject:[NSNumber numberWithBool:!b] forKey:key];
+    [_tableV reloadSections:[NSIndexSet indexSetWithIndex:(btn.tag - 1)] withRowAnimation:UITableViewRowAnimationFade];
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -90,7 +102,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[_dicData objectForKey:[_arKey objectAtIndex:section]] count];
+    NSString *key = [_arKey objectAtIndex:section];
+    BOOL bShowRow = [[_dicShowRow objectForKey:key] boolValue];
+    if (bShowRow)
+    {
+        return [[_dicData objectForKey:[_arKey objectAtIndex:section]] count];
+    }
+    return 0;
 }
 
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -114,27 +132,11 @@
     return cell;
 }
 
-#pragma mark - action
-
-- (void)showRow:(UIButton *)btn
-{
-    NSString *key = [_arKey objectAtIndex:(btn.tag - 1)];
-    BOOL b = [[_dicShowRow objectForKey:key] boolValue];
-    [_dicShowRow setObject:[NSNumber numberWithBool:!b] forKey:key];
-    [_tableV reloadSections:[NSIndexSet indexSetWithIndex:(btn.tag - 1)] withRowAnimation:UITableViewRowAnimationFade];
-}
-
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *key = [_arKey objectAtIndex:[indexPath section]];
-    BOOL bShowRow = [[_dicShowRow objectForKey:key] boolValue];
-    if (bShowRow)
-    {
-        return 50;
-    }
-    return 0;
+    return 50;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

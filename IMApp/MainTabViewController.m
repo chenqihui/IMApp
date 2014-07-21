@@ -8,7 +8,10 @@
 
 #import "MainTabViewController.h"
 
+#import "MessagesViewController.h"
 #import "ContactsViewController.h"
+#import "DynamicViewController.h"
+#import "MineViewController.h"
 
 @interface MainTabViewController ()
 {
@@ -25,24 +28,28 @@
     [_tabC.view setFrame:self.view.frame];
     [self.view addSubview:_tabC.view];
     
-    
-    UIViewController *f = [[UIViewController alloc] init];
-    [f.view setBackgroundColor:[UIColor orangeColor]];
+    MessagesViewController *f = [[MessagesViewController alloc] init];
     UITabBarItem *fItem = [[UITabBarItem alloc]initWithTitle:@"消息" image:nil tag:1];
+    [fItem setImage:[UIImage imageNamed:@"tab_recent_nor.png"]];
+    [fItem setSelectedImage:[UIImage imageNamed:@"tab_recent_press.png"]];
     f.tabBarItem = fItem;
     
     ContactsViewController *contactsVC = [[ContactsViewController alloc] init];
     UITabBarItem *sItem = [[UITabBarItem alloc]initWithTitle:@"联系人" image:nil tag:1];
+    [sItem setImage:[UIImage imageNamed:@"tab_buddy_nor.png"]];
+    [sItem setSelectedImage:[UIImage imageNamed:@"tab_buddy_press.png"]];
     contactsVC.tabBarItem = sItem;
     
-    UIViewController *t = [[UIViewController alloc] init];
-    [t.view setBackgroundColor:[UIColor yellowColor]];
+    DynamicViewController *t = [[DynamicViewController alloc] init];
     UITabBarItem *tItem = [[UITabBarItem alloc]initWithTitle:@"动态" image:nil tag:1];
+    [tItem setImage:[UIImage imageNamed:@"tab_qworld_nor.png"]];
+    [tItem setSelectedImage:[UIImage imageNamed:@"tab_qworld_press.png"]];
     t.tabBarItem = tItem;
     
-    UIViewController *ff = [[UIViewController alloc] init];
-    [ff.view setBackgroundColor:[UIColor greenColor]];
+    MineViewController *ff = [[MineViewController alloc] init];
     UITabBarItem *ffItem = [[UITabBarItem alloc]initWithTitle:@"我" image:nil tag:1];
+    [ffItem setImage:[UIImage imageNamed:@"tab_me_svip_nor.png"]];
+    [ffItem setSelectedImage:[UIImage imageNamed:@"tab_me_svip_press.png"]];
     ff.tabBarItem = ffItem;
     
     _tabC.viewControllers = @[f, contactsVC, t, ff];
