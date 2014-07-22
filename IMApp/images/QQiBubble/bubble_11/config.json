@@ -1,0 +1,35 @@
+﻿{
+	"version":1,
+	"id":11,
+	"name":"浪花朵朵",
+	"color": "0xFF000000",
+	"link_color": "0xFF0079ff",
+	"zoom_point":[82,48],
+	"static":
+	{
+	    "version":1
+	},
+	"voice_animation":
+	{
+		"align":"BL",
+		"rect":[10,-62,130,46],
+		"dir":"voice",
+		"count": 20,
+		"time":50,
+		"version":1
+},
+  "key_animations": [
+    {
+    	"version":1,
+      "key_word": [
+        "晚安","好困","困了","睡觉","睡了","月亮"],
+      "align": "TL",
+      "cycle_count": 5,
+      "rect": [6,0,43,57],
+      "dir":"key",
+      "zip_name": "zhongqiu",
+      "count": 20,
+      "time": 50
+    }
+  ]
+}

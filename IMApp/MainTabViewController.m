@@ -22,6 +22,22 @@
 
 @implementation MainTabViewController
 
+static MainTabViewController *main;
+
++ (MainTabViewController *)getMain
+{
+    return main;
+}
+
+- (id)init
+{
+    self = [super init];
+    
+    main = self;
+    
+    return self;
+}
+
 - (void)viewDidLoad
 {
     _tabC = [[UITabBarController alloc] init];

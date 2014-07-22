@@ -8,6 +8,9 @@
 
 #import "MessagesViewController.h"
 
+#import "MainTabViewController.h"
+#import "ChatChatViewController.h"
+
 @interface MessagesViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate,UISearchDisplayDelegate>
 {
     UISearchBar *_searchB;
@@ -18,6 +21,8 @@
     
     UIView *_maskV;
     UIView *_menuV;
+    
+    ChatChatViewController *_chatVC;
 }
 
 @end
@@ -200,6 +205,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    _chatVC = [[ChatChatViewController alloc] init];
+    [_chatVC.view setFrame:self.view.bounds];
+//    [self.view addSubview:_chatVC.view];
+    
+    [[MainTabViewController getMain].view addSubview:_chatVC.view];
 }
 
 #pragma mark - UISearchDisplayDelegate
