@@ -21,8 +21,6 @@
     
     UIView *_maskV;
     UIView *_menuV;
-    
-    ChatChatViewController *_chatVC;
 }
 
 @end
@@ -205,11 +203,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    _chatVC = [[ChatChatViewController alloc] init];
-    [_chatVC.view setFrame:self.view.bounds];
-//    [self.view addSubview:_chatVC.view];
+    ChatChatViewController *chatVC = [[ChatChatViewController alloc] initWithFrame:self.view.bounds param:@[[_arData objectAtIndex:indexPath.row]]];
     
-    [[MainTabViewController getMain].view addSubview:_chatVC.view];
+//    [self.view addSubview:_chatVC.view];
+//    [[MainTabViewController getMain].view addSubview:_chatVC.view];
+    [[MainTabViewController getMain].navigationController pushViewController:chatVC animated:YES];
 }
 
 #pragma mark - UISearchDisplayDelegate

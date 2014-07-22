@@ -20,10 +20,12 @@
     [self.window makeKeyAndVisible];
     
 #warning 启动
-    [UIViewController validatePanPackWithMLTransitionGestureRecognizerType:MLTransitionGestureRecognizerTypeScreenEdgePan];
+    [UIViewController validatePanPackWithMLTransitionGestureRecognizerType:MLTransitionGestureRecognizerTypePan];
     
     MainTabViewController *mtab = [[MainTabViewController alloc] init];
-    self.window.rootViewController = mtab;
+    UINavigationController *naviC = [[UINavigationController alloc] initWithRootViewController:mtab];
+    
+    self.window.rootViewController = naviC;
     
     return YES;
 }

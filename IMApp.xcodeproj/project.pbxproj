@@ -10,6 +10,8 @@
 		7404BF9B197BFA1A00F60D2E /* QHBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7404BF9A197BFA1A00F60D2E /* QHBasicViewController.m */; };
 		7404BF9F197BFA2D00F60D2E /* UIView+KGViewExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 7404BF9D197BFA2D00F60D2E /* UIView+KGViewExtend.m */; };
 		7404BFA2197BFB0400F60D2E /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7404BFA1197BFB0400F60D2E /* ContactsViewController.m */; };
+		748574AC197E04EE000F7927 /* back_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 748574AA197E04EE000F7927 /* back_normal@2x.png */; };
+		748574AD197E04EE000F7927 /* back_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 748574AB197E04EE000F7927 /* back_press@2x.png */; };
 		74A7A0A2197BAAC7002276E1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A7A0A1197BAAC7002276E1 /* Foundation.framework */; };
 		74A7A0A4197BAAC7002276E1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A7A0A3197BAAC7002276E1 /* CoreGraphics.framework */; };
 		74A7A0A6197BAAC7002276E1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A7A0A5197BAAC7002276E1 /* UIKit.framework */; };
@@ -75,6 +77,8 @@
 		7404BF9E197BFA2D00F60D2E /* QHViewTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHViewTag.h; sourceTree = "<group>"; };
 		7404BFA0197BFB0400F60D2E /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
 		7404BFA1197BFB0400F60D2E /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
+		748574AA197E04EE000F7927 /* back_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_normal@2x.png"; sourceTree = "<group>"; };
+		748574AB197E04EE000F7927 /* back_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_press@2x.png"; sourceTree = "<group>"; };
 		74A7A09E197BAAC7002276E1 /* IMApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IMApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74A7A0A1197BAAC7002276E1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		74A7A0A3197BAAC7002276E1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -260,6 +264,8 @@
 		74DBECC0197CB909003789F7 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				748574AA197E04EE000F7927 /* back_normal@2x.png */,
+				748574AB197E04EE000F7927 /* back_press@2x.png */,
 				74FFA922197DE15400A42E50 /* QQiBubble */,
 				74E8D23C197D247100CBC41C /* DefaultHead.png */,
 				74E8D23A197D243000CBC41C /* aio_face_manage_cover_default@2x.png */,
@@ -389,10 +395,12 @@
 				74FFA934197DE15400A42E50 /* qqibubble-color@2x.png in Resources */,
 				74FFA932197DE15400A42E50 /* qqi_chat_normal_nor_pic@2x.png in Resources */,
 				74DBECCF197CB909003789F7 /* tab_recent_nor@2x.png in Resources */,
+				748574AC197E04EE000F7927 /* back_normal@2x.png in Resources */,
 				74DBECD0197CB909003789F7 /* tab_recent_press@2x.png in Resources */,
 				74DBECCA197CB909003789F7 /* tab_buddy_press@2x.png in Resources */,
 				74E8D237197D211100CBC41C /* 1@2x.png in Resources */,
 				74A7A0B4197BAAC7002276E1 /* Images.xcassets in Resources */,
+				748574AD197E04EE000F7927 /* back_press@2x.png in Resources */,
 				74DBECCC197CB909003789F7 /* tab_me_svip_press@2x.png in Resources */,
 				74DBECDE197CC58C003789F7 /* menu_icon_bulb_pressed@2x.png in Resources */,
 				74FFA92F197DE15400A42E50 /* chat_bubble_thumbnail@2x.png in Resources */,

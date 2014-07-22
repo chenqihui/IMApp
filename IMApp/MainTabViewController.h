@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainTabViewController : UIViewController
+@interface MainTabViewController : QHBasicViewController
 
 + (MainTabViewController *)getMain;
 

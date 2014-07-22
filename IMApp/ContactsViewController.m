@@ -8,6 +8,9 @@
 
 #import "ContactsViewController.h"
 
+#import "MainTabViewController.h"
+#import "ChatChatViewController.h"
+
 @interface ContactsViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate,UISearchDisplayDelegate>
 {
     UISegmentedControl *_selectTypeSegment;
@@ -95,9 +98,10 @@
         [_arKey enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
          {
              NSMutableArray *ar = [NSMutableArray new];
-    //         srand((unsigned)time(0));  //不加这句每次产生的随机数不变
+//             srand((unsigned)time(0));  //不加这句每次产生的随机数不变
              int c = rand() % 10 + 1;
-             for (int i = 0; i < c; i++)
+//             int c = arc4random() % 10 + 1;
+             for (int i = 1; i < c; i++)
              {
                  [ar addObject:[NSString stringWithFormat:@"%d", i]];
              }
@@ -260,6 +264,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSString *key = [_arKey objectAtIndex:[indexPath section]];
+    ChatChatViewController *chatVC = [[ChatChatViewController alloc] initWithFrame:self.view.bounds param:@[[NSString stringWithFormat:@"%@-%@", key, [[_dicData objectForKey:key] objectAtIndex:indexPath.row]]]];
+    [[MainTabViewController getMain].navigationController pushViewController:chatVC animated:YES];
 }
 
 #pragma mark - UISearchDisplayDelegate
