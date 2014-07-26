@@ -10,6 +10,7 @@
 		7404BF9B197BFA1A00F60D2E /* QHBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7404BF9A197BFA1A00F60D2E /* QHBasicViewController.m */; };
 		7404BF9F197BFA2D00F60D2E /* UIView+KGViewExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 7404BF9D197BFA2D00F60D2E /* UIView+KGViewExtend.m */; };
 		7404BFA2197BFB0400F60D2E /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7404BFA1197BFB0400F60D2E /* ContactsViewController.m */; };
+		74326AD11984189E001D3C24 /* RectViewForMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 74326AD01984189E001D3C24 /* RectViewForMessage.m */; };
 		748574AC197E04EE000F7927 /* back_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 748574AA197E04EE000F7927 /* back_normal@2x.png */; };
 		748574AD197E04EE000F7927 /* back_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 748574AB197E04EE000F7927 /* back_press@2x.png */; };
 		74A7A0A2197BAAC7002276E1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A7A0A1197BAAC7002276E1 /* Foundation.framework */; };
@@ -77,6 +78,8 @@
 		7404BF9E197BFA2D00F60D2E /* QHViewTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHViewTag.h; sourceTree = "<group>"; };
 		7404BFA0197BFB0400F60D2E /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
 		7404BFA1197BFB0400F60D2E /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
+		74326ACF1984189E001D3C24 /* RectViewForMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RectViewForMessage.h; sourceTree = "<group>"; };
+		74326AD01984189E001D3C24 /* RectViewForMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RectViewForMessage.m; sourceTree = "<group>"; };
 		748574AA197E04EE000F7927 /* back_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_normal@2x.png"; sourceTree = "<group>"; };
 		748574AB197E04EE000F7927 /* back_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_press@2x.png"; sourceTree = "<group>"; };
 		74A7A09E197BAAC7002276E1 /* IMApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IMApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -213,6 +216,8 @@
 				74DBECD5197CC06A003789F7 /* MineViewController.m */,
 				74FFA91F197DE13E00A42E50 /* ChatChatViewController.h */,
 				74FFA920197DE13E00A42E50 /* ChatChatViewController.m */,
+				74326ACF1984189E001D3C24 /* RectViewForMessage.h */,
+				74326AD01984189E001D3C24 /* RectViewForMessage.m */,
 				74A7A0B3197BAAC7002276E1 /* Images.xcassets */,
 				74A7A0A8197BAAC7002276E1 /* Supporting Files */,
 			);
@@ -446,6 +451,7 @@
 				74DBECD3197CBA79003789F7 /* DynamicViewController.m in Sources */,
 				74DBECD6197CC06A003789F7 /* MineViewController.m in Sources */,
 				7404BF9B197BFA1A00F60D2E /* QHBasicViewController.m in Sources */,
+				74326AD11984189E001D3C24 /* RectViewForMessage.m in Sources */,
 				74A7A0AE197BAAC7002276E1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

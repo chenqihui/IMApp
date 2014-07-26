@@ -63,14 +63,14 @@ static MainTabViewController *main;
     t.tabBarItem = tItem;
     
     MineViewController *ff = [[MineViewController alloc] init];
-    UITabBarItem *ffItem = [[UITabBarItem alloc]initWithTitle:@"我svip" image:nil tag:1];
+    UITabBarItem *ffItem = [[UITabBarItem alloc]initWithTitle:@"svip" image:nil tag:1];
     [ffItem setImage:[UIImage imageNamed:@"tab_me_svip_nor.png"]];
     [ffItem setSelectedImage:[UIImage imageNamed:@"tab_me_svip_press.png"]];
     ff.tabBarItem = ffItem;
     
     _tabC.viewControllers = @[f, contactsVC, t, ff];
     
-    [_tabC setSelectedIndex:1];
+    [_tabC setSelectedIndex:0];
 }
 
 @end

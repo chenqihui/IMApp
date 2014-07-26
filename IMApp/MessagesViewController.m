@@ -11,7 +11,9 @@
 #import "MainTabViewController.h"
 #import "ChatChatViewController.h"
 
-@interface MessagesViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate,UISearchDisplayDelegate>
+#import "RectViewForMessage.h"
+
+@interface MessagesViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate,UISearchDisplayDelegate, RectViewForMessageDelegate>
 {
     UISearchBar *_searchB;
     UITableView *_tableV;
@@ -20,7 +22,7 @@
     UISearchDisplayController *_searchDisplayC;
     
     UIView *_maskV;
-    UIView *_menuV;
+    RectViewForMessage *_menuV;
 }
 
 @end
@@ -96,7 +98,8 @@
     UITapGestureRecognizer *tSM = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showMenuByTap:)];
     [bg addGestureRecognizer:tSM];
     
-    _menuV = [[UIView alloc] initWithFrame:CGRectMake(0, -80, self.view.width, 80)];
+    _menuV = [[RectViewForMessage alloc] initWithFrame:CGRectMake(0, -80, self.view.width, 80) ar:@[@"多人聊天", @"多人通话", @"共享照片", @"扫一扫"]];
+    _menuV.delegate = self;
     [_menuV setBackgroundColor:RGBA(214, 212, 212, 1)];
     [_maskV addSubview:_menuV];
     
@@ -298,6 +301,13 @@
     //            }
     //        }
     //    }
+}
+
+#pragma mark - RectViewForMessageDelegate
+
+- (void)press:(RectViewForMessage *)rectView index:(int)nIndex
+{
+    NSLog(@"%d", nIndex);
 }
 
 @end
