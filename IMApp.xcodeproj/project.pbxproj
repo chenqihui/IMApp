@@ -13,6 +13,8 @@
 		74326AD11984189E001D3C24 /* RectViewForMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 74326AD01984189E001D3C24 /* RectViewForMessage.m */; };
 		748574AC197E04EE000F7927 /* back_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 748574AA197E04EE000F7927 /* back_normal@2x.png */; };
 		748574AD197E04EE000F7927 /* back_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 748574AB197E04EE000F7927 /* back_press@2x.png */; };
+		748772A21984B27E007CCD3B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 748772A11984B27E007CCD3B /* README.md */; };
+		748772A51984B407007CCD3B /* PopFromMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748772A41984B407007CCD3B /* PopFromMessageViewController.m */; };
 		74A7A0A2197BAAC7002276E1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A7A0A1197BAAC7002276E1 /* Foundation.framework */; };
 		74A7A0A4197BAAC7002276E1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A7A0A3197BAAC7002276E1 /* CoreGraphics.framework */; };
 		74A7A0A6197BAAC7002276E1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A7A0A5197BAAC7002276E1 /* UIKit.framework */; };
@@ -82,6 +84,9 @@
 		74326AD01984189E001D3C24 /* RectViewForMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RectViewForMessage.m; sourceTree = "<group>"; };
 		748574AA197E04EE000F7927 /* back_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_normal@2x.png"; sourceTree = "<group>"; };
 		748574AB197E04EE000F7927 /* back_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_press@2x.png"; sourceTree = "<group>"; };
+		748772A11984B27E007CCD3B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
+		748772A31984B407007CCD3B /* PopFromMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopFromMessageViewController.h; sourceTree = "<group>"; };
+		748772A41984B407007CCD3B /* PopFromMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopFromMessageViewController.m; sourceTree = "<group>"; };
 		74A7A09E197BAAC7002276E1 /* IMApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IMApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74A7A0A1197BAAC7002276E1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		74A7A0A3197BAAC7002276E1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -218,6 +223,8 @@
 				74FFA920197DE13E00A42E50 /* ChatChatViewController.m */,
 				74326ACF1984189E001D3C24 /* RectViewForMessage.h */,
 				74326AD01984189E001D3C24 /* RectViewForMessage.m */,
+				748772A31984B407007CCD3B /* PopFromMessageViewController.h */,
+				748772A41984B407007CCD3B /* PopFromMessageViewController.m */,
 				74A7A0B3197BAAC7002276E1 /* Images.xcassets */,
 				74A7A0A8197BAAC7002276E1 /* Supporting Files */,
 			);
@@ -227,6 +234,7 @@
 		74A7A0A8197BAAC7002276E1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				748772A11984B27E007CCD3B /* README.md */,
 				74A7A0B0197BAAC7002276E1 /* AppDelegate.h */,
 				74A7A0B1197BAAC7002276E1 /* AppDelegate.m */,
 				74A7A0A9197BAAC7002276E1 /* IMApp-Info.plist */,
@@ -396,6 +404,7 @@
 				74A7A0AC197BAAC7002276E1 /* InfoPlist.strings in Resources */,
 				74FFA933197DE15400A42E50 /* qqi_chat_translate_nor_pic@2x.png in Resources */,
 				74E8D23D197D247100CBC41C /* DefaultHead.png in Resources */,
+				748772A21984B27E007CCD3B /* README.md in Resources */,
 				74DBECCB197CB909003789F7 /* tab_me_svip_nor@2x.png in Resources */,
 				74FFA934197DE15400A42E50 /* qqibubble-color@2x.png in Resources */,
 				74FFA932197DE15400A42E50 /* qqi_chat_normal_nor_pic@2x.png in Resources */,
@@ -452,6 +461,7 @@
 				74DBECD6197CC06A003789F7 /* MineViewController.m in Sources */,
 				7404BF9B197BFA1A00F60D2E /* QHBasicViewController.m in Sources */,
 				74326AD11984189E001D3C24 /* RectViewForMessage.m in Sources */,
+				748772A51984B407007CCD3B /* PopFromMessageViewController.m in Sources */,
 				74A7A0AE197BAAC7002276E1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

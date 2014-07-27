@@ -12,6 +12,7 @@
 #import "ChatChatViewController.h"
 
 #import "RectViewForMessage.h"
+#import "PopFromMessageViewController.h"
 
 @interface MessagesViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate,UISearchDisplayDelegate, RectViewForMessageDelegate>
 {
@@ -23,6 +24,7 @@
     
     UIView *_maskV;
     RectViewForMessage *_menuV;
+    NSArray *_arMenu;
 }
 
 @end
@@ -98,7 +100,8 @@
     UITapGestureRecognizer *tSM = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showMenuByTap:)];
     [bg addGestureRecognizer:tSM];
     
-    _menuV = [[RectViewForMessage alloc] initWithFrame:CGRectMake(0, -80, self.view.width, 80) ar:@[@"多人聊天", @"多人通话", @"共享照片", @"扫一扫"]];
+    _arMenu = @[@"多人聊天", @"多人通话", @"共享照片", @"扫一扫"];
+    _menuV = [[RectViewForMessage alloc] initWithFrame:CGRectMake(0, -80, self.view.width, 80) ar:_arMenu];
     _menuV.delegate = self;
     [_menuV setBackgroundColor:RGBA(214, 212, 212, 1)];
     [_maskV addSubview:_menuV];
@@ -307,7 +310,8 @@
 
 - (void)press:(RectViewForMessage *)rectView index:(int)nIndex
 {
-    NSLog(@"%d", nIndex);
+    PopFromMessageViewController *popVC = [[PopFromMessageViewController alloc] initWithFrame:self.view.bounds param:@[[_arMenu objectAtIndex:nIndex]]];
+    [[MainTabViewController getMain] presentViewController:popVC animated:YES completion:nil];
 }
 
 @end
